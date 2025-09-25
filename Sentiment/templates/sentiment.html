@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <style>
+        
+        body{
+            text-align: center;
+            font-family: Arial, sans-serif;
+            margin: 60px;
+            background-color: #0d54b8;
+            overflow-y: hidden;
+        }
+
+        #text{
+            width: 50%;
+            height: 100px;
+            margin-bottom: 20px;
+            font-size: 16px;
+            padding: 0px 30px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            justify-items: center;
+            text-align: center;
+        }
+        #text::placeholder{
+             padding:45%; 
+
+        }
+
+        #result{
+            margin-top: 20px;
+            padding: 10px 30px;
+            border: 1px solid #000000;
+            display: inline-block;
+            text-align: left;
+            max-width: 50%;
+            overflow-wrap: break-word;
+            border-radius: 10px;
+            background-color: aliceblue;
+            color: #000000;
+            max-height: 70vh;
+            width: 50%;    
+        }
+
+        h1, h2 {
+            color: #000000;
+
+        }
+
+        #title {
+            color: #000000;
+        } 
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            font-size: 20px;
+            color: white;
+            background: #14a8de;
+            cursor: pointer;
+            border-radius: 20px;
+        } 
+
+        input[type="submit"]:hover{
+            color:black;
+            background: #0ddc4b;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="title">Sentiment Analysis</h1>
+
+    <form action="/" method="POST">
+     
+        <input id="text" autofocus placeholder="Enter text here" value="{{text}}" name="text"><br>
+        <input type="submit" value="Analyze">
+
+    </form>
+
+    {% if result %}
+    <div id="result" name="result">
+    <h1>Result:</h1>
+    <h2 class="content">{{text}}:</h2>
+    <h2 class="content">Polarity: {{result[0]}}</h2>
+    <h2 class="content">Subjectivity: {{result[1]}}</h2>
+    <h2 class="content">Sentiment: {{result[2]}}</h2>
+    <h2 class="content">Subjectivity Level: {{result[3]}}</h2></div>
+    {% endif %}
+
+</body>
+
+{% if result %}
+    <script>
+        text=document.getElementById("text")
+        text.focus();
+
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);        
+        }
+        if(!`{{text}}`){
+        result.innerHTML="<h1>Result:</h1><center><b><h2 class='content' style='color: red;'>Please enter some text to analyze.</h2></b></center>";
+        }
+    </script>
+    {% endif %}
+
+</html>
