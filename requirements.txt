@@ -1,1 +1,9 @@
-pyttsx3 threading requests speech_recognition pandas matplotlib.pyplot seaborn flask textblob
+# requirements.txt
+pyttsx3
+requests
+SpeechRecognition
+pandas
+matplotlib
+seaborn
+flask
+textblob
