@@ -1,0 +1,21 @@
+# .github/workflows/main.yml content
+
+name: Build and Test
+
+on: [push] # This workflow runs whenever you push code to any branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.x'
+
+    - name: Display a simple message
+      run: echo "The workflow ran successfully!"
