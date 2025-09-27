@@ -89,7 +89,7 @@ def runReminder():
 def main():
  try:
      with sr.Microphone() as src:
-      text=r.listen(src)
+      text=r.listen(src,timeout=5)
       text=r.recognize_google(text).lower()
       print(text)
      
@@ -111,28 +111,25 @@ def main():
 if __name__=="__main__":
  
  execute="max"
- print("I am here to help you") 
-
- while True:   
+ print("I am here to help you")   
  
-   
-   try:
-     with sr.Microphone() as src:
-      userMessage=r.listen(src)
-      userMessage=r.recognize_google(userMessage).lower()
-      print(userMessage)
+try:
+ with sr.Microphone() as src:
+  userMessage=r.listen(src)
+  userMessage=r.recognize_google(userMessage).lower()
+  print(userMessage)
 
-      if "exit" in userMessage :
-        p.speak("Bye Bye")
-        print("Bye Bye")
-        break
-      
-      elif execute in userMessage:
-       p.speak("how can i help you")
-       print("how can i help you")
-       main()
-      else:
-       pass
-   except Exception as e:
+  if "exit" in userMessage :
+    p.speak("Bye Bye")
+    print("Bye Bye")
+    break
+  
+  elif execute in userMessage:
+   p.speak("how can i help you")
+   print("how can i help you")
+   main()
+  else:
+   pass
+except Exception as e:
       pass
    
