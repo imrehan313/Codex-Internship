@@ -1,8 +1,10 @@
 # .github/workflows/main.yml content
 
+# .github/workflows/main.yml
+
 name: Build and Test
 
-on: [push] # This workflow runs whenever you push code to any branch
+on: [push] 
 
 jobs:
   build:
@@ -17,5 +19,23 @@ jobs:
       with:
         python-version: '3.x'
 
+    # ----------------------------------------------------------------
+    # THIS BLOCK SECURELY GRANTS ACCESS TO YOUR SECRET
+    # ----------------------------------------------------------------
+    - name: Inject Secret Key into Environment
+      env:
+        # The Secret value from settings is now available as the ENV variable MY_KEY_VAR
+        WEATHER_KEY: ${{ secrets.WEATHER_API_KEY }}
+
+        NEWS_KEY: ${{secrets.NEWS_API_KEY}}
+        
+      run: |
+        echo "Successfully accessed the secret for use in a script."
+        # Use a tool like 'pip' to install necessary dependencies
+        # pip install -r requirements.txt 
+        
+        # Run your Python script that uses the environment variable
+        python your_script_name.py
+        
     - name: Display a simple message
       run: echo "The workflow ran successfully!"
