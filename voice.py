@@ -1,4 +1,4 @@
-import threading as t,time,datetime as d,requests as re,speech_recognition as sr,pyttsx3 as p,re as regex
+import threading as t,time,datetime as d,requests as re,speech_recognition as sr,pyttsx3 as p,re as regex,os
 
 r=sr.Recognizer()
 
@@ -8,7 +8,7 @@ def setReminder(message,delay=2*60):
     print(message)
 
 def checkWeather(cityName):
-    api_key=""
+    api_key=os.getenv("WEATHER_API_KEY")
     p.speak(f"Checking the weather of {cityName}")
     response =re.get(f"http://api.weatherapi.com/v1/current.json?key={api_key}&q={cityName}&aqi=no").json()
     try:
@@ -26,7 +26,7 @@ def checkWeather(cityName):
     p.speak("There is no such city\n",e)
      
 def checkNews(topic,from_date=d.date.today()-d.timedelta(days=7),to_date=d.date.today()):
-    api_key=""
+    api_key=os.getenv("NEWS_API_KEY")
     p.speak(f"Extracting the article about topic {topic}")
     response=re.get(f"https://newsapi.org/v2/everything?q={topic}&from={from_date}&to={to_date}&sortBy=popularity&apiKey={api_key}").json()
 
