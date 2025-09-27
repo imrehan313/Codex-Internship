@@ -8,8 +8,9 @@ def setReminder(message,delay=2*60):
     print(message)
 
 def checkWeather(cityName):
+    api_key=""
     p.speak(f"Checking the weather of {cityName}")
-    response =re.get(f"http://api.weatherapi.com/v1/current.json?key=fb410b65058a4cafbc3205204251209&q={cityName}&aqi=no").json()
+    response =re.get(f"http://api.weatherapi.com/v1/current.json?key={api_key}&q={cityName}&aqi=no").json()
     try:
       city=response["location"]["name"]
       time=response["location"]["localtime"]
@@ -25,8 +26,9 @@ def checkWeather(cityName):
     p.speak("There is no such city\n",e)
      
 def checkNews(topic,from_date=d.date.today()-d.timedelta(days=7),to_date=d.date.today()):
+    api_key=""
     p.speak(f"Extracting the article about topic {topic}")
-    response=re.get(f"https://newsapi.org/v2/everything?q={topic}&from={from_date}&to={to_date}&sortBy=popularity&apiKey=417a677b29084fdea53de29fe3aaf0d5").json()
+    response=re.get(f"https://newsapi.org/v2/everything?q={topic}&from={from_date}&to={to_date}&sortBy=popularity&apiKey={api_key}").json()
 
     try:
      newsName=response["articles"][1]["source"]["name"]
