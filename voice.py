@@ -1,4 +1,7 @@
 import threading as t,time,datetime as d,requests as re,speech_recognition as sr,pyttsx3 as p,re as regex,os
+# Use https://www.weatherapi.com/ for Weather API Key generation
+# Use https://newsapi.org/ for News API Key generation
+
 
 r=sr.Recognizer()
 
